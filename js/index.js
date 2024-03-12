@@ -36,23 +36,6 @@ function crearHtml(productos) {
 
 crearHtml(productos);
 
-// function formularioFlotante() {
-//   formContacto = addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     nombre = nombre.value;
-//     telefono = telefono.value;
-//     destinatario = destinatario.value;
-//     cantPers = cantPers.value;
-//     fecha = fecha.value;
-
-//     formContacto = [nombre, telefono, destinatario, cantPers, fecha];
-
-//     localStorage.setItem("formContacto", JSON.stringify(formContacto));
-
-//     ventanaFlotante.style.display = "none";
-//   });
-// }
-
 function formularioFlotante() {
   const formContacto = document.getElementById("formContacto");
 
