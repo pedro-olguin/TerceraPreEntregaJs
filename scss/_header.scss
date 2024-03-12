@@ -1,0 +1,34 @@
+/*header*/
+.bodyContainer {
+  background-color: $color-blanco;
+}
+
+.headerContainer {
+  background-color: $color-grisOscuro;
+}
+
+.buttonHeaderContainer {
+  width: 141.61px;
+}
+
+.fontStyle a {
+  font-size: 20px;
+  color: $color-negro;
+
+  &:hover {
+    color: $color-rojo;
+  }
+}
+
+.redesButton a {
+  color: $color-negro;
+}
+
+.redesIcon a {
+  color: $color-negro;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-rojo;
+  }
+}

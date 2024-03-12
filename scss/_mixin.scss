@@ -1,0 +1,61 @@
+@mixin movilMax {
+    @media (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin tabletMax {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin deskMax {
+    @media (max-width: 990px) {
+        @content;
+    }
+}
+
+@mixin movilMin {
+    @media (min-width: 375px) {
+        @content;
+    }
+}
+
+@mixin tabletMin {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin deskMin {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+
+
+
+@mixin buttons {
+    a {
+        color: $color-negro;
+        text-decoration: none;
+        border-radius: 10px;
+        background-color: $color-grisOscuro;
+        margin: 5px auto;
+        padding: 5px;
+        border: none;
+
+        &:hover {
+            color: $color-rojo;
+            background-color: $color-grisOscuro;
+        }
+
+        &:active {
+            background-color: $color-rojo;
+            color: $color-blanco;
+
+        }
+    }
+}

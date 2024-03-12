@@ -1,0 +1,38 @@
+/*footer*/
+
+.footerContainer {
+
+  background-color: $color-grisOscuro;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  height: max-content;
+  width: 100%;
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: auto;
+
+}
+
+.horariosFooter {
+  font-size: 0.7rem;
+  margin: auto;
+}
+
+.logoFooterContainer {
+  text-align: center;
+}
+
+.buttonsFooterContainer {
+  text-align: center;
+  margin: auto;
+
+  a {
+    color: $color-negro;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-rojo;
+    }
+  }
+}
