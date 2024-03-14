@@ -481,6 +481,10 @@ div.card-body a:active {
   box-shadow: -1px -1px gray;
 }
 
+.escondido {
+  display: none;
+}
+
 /*mediaQ header*/
 @media (max-width: 990px) {
   .redesButtonContainer {

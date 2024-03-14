@@ -1,24 +1,30 @@
-let formContacto = document.querySelector("#formContacto");
-const ventanaFlotante = document.querySelector("#ventanaFlotante");
-let nombre = document.querySelector("#nombre");
-let telefono = document.querySelector("#telefono");
-let destinatario = document.querySelector("#destinatario");
-let cantPers = document.querySelector("#cantPers");
-let save = document.querySelector("#save");
-let fecha = document.querySelector("#fecha");
-let btnSearch = document.querySelector("#btnSearch");
-const inputSearch = document.querySelector("#search");
-const ulProdElegido = document.querySelector("#ulProdElegido");
-const carrito = [];
+let productos = [];
 
-const productList = document.querySelector("#productList");
+fetch("https://apimocha.com/saboraricoapi/productos")
+  .then((res) => res.json())
+  .then((respuesta) => {
+    productos = respuesta;
+    console.log(productos);
 
-function crearHtml(productos) {
-  productList.innerHTML = "";
-  productos.forEach((producto) => {
-    const div = document.createElement("div");
-    div.classList.add("productoContainer");
-    div.innerHTML = `
+    let formContacto = document.querySelector("#formContacto");
+    const ventanaFlotante = document.querySelector("#ventanaFlotante");
+    let nombre = document.querySelector("#nombre");
+    let telefono = document.querySelector("#telefono");
+    let destinatario = document.querySelector("#destinatario");
+    let cantPers = document.querySelector("#cantPers");
+    let save = document.querySelector("#save");
+    let fecha = document.querySelector("#fecha");
+    let btnSearch = document.querySelector("#btnSearch");
+    const inputSearch = document.querySelector("#search");
+
+    const productList = document.querySelector("#productList");
+
+    function crearHtml(productos) {
+      productList.innerHTML = "";
+      productos.forEach((producto) => {
+        const div = document.createElement("div");
+        div.classList.add("productoContainer");
+        div.innerHTML = `
     <img src="../assets/${producto.img}" class="card-img-top"
         alt="imagen ilustrativa en representacion de promo 1 de pizzas">
     <div class="card-body">
@@ -28,52 +34,53 @@ function crearHtml(productos) {
         <button class="btn" id="prod-${producto.id}"> Comprar </button>
     </div>`;
 
-    productList.appendChild(div);
-    const boton = document.getElementById(`prod-${producto.id}`);
-    boton.addEventListener("click", () => agregarAlCarrito(producto));
+        productList.appendChild(div);
+        const boton = document.getElementById(`prod-${producto.id}`);
+        boton.addEventListener("click", () => agregarAlCarrito(producto));
+      });
+    }
+
+    crearHtml(productos);
+
+    function formularioFlotante() {
+      const formContacto = document.getElementById("formContacto");
+
+      formContacto.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nombre = document.getElementById("nombre").value;
+        const telefono = document.getElementById("telefono").value;
+        const destinatario = document.getElementById("destinatario").value;
+        const cantPers = document.getElementById("cantPers").value;
+        const fecha = document.getElementById("fecha").value;
+
+        const formContacto = {
+          nombre: nombre,
+          telefono: telefono,
+          destinatario: destinatario,
+          cantPers: cantPers,
+          fecha: fecha,
+        };
+
+        localStorage.setItem("formContacto", JSON.stringify(formContacto));
+
+        ventanaFlotante.style.display = "none";
+      });
+    }
+
+    formularioFlotante();
+
+    function filtrarProducto(arr, filtros) {
+      const filtro = arr.filter((el) => {
+        return el.descripcion.includes(filtros.toLowerCase());
+      });
+
+      return filtro;
+    }
+
+    btnSearch.addEventListener("click", () => {
+      const filtrado = filtrarProducto(productos, inputSearch.value);
+
+      crearHtml(filtrado);
+    });
   });
-}
-
-crearHtml(productos);
-
-function formularioFlotante() {
-  const formContacto = document.getElementById("formContacto");
-
-  formContacto.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const nombre = document.getElementById("nombre").value;
-    const telefono = document.getElementById("telefono").value;
-    const destinatario = document.getElementById("destinatario").value;
-    const cantPers = document.getElementById("cantPers").value;
-    const fecha = document.getElementById("fecha").value;
-
-    const formContacto = {
-      nombre: nombre,
-      telefono: telefono,
-      destinatario: destinatario,
-      cantPers: cantPers,
-      fecha: fecha,
-    };
-
-    localStorage.setItem("formContacto", JSON.stringify(formContacto));
-
-    ventanaFlotante.style.display = "none";
-  });
-}
-
-formularioFlotante();
-
-function filtrarProducto(arr, filtros) {
-  const filtro = arr.filter((el) => {
-    return el.descripcion.includes(filtros.toLowerCase());
-  });
-
-  return filtro;
-}
-
-btnSearch.addEventListener("click", () => {
-  const filtrado = filtrarProducto(productos, inputSearch.value);
-
-  crearHtml(filtrado);
-});

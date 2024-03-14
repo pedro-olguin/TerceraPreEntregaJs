@@ -82,7 +82,6 @@ function reiniciarCarrito() {
   cantidadDeProductos.innerText = "-";
   precioProductos.innerText = "-";
 }
-
 actualizarNumeroCarrito();
 
 //Comprar Carrito
